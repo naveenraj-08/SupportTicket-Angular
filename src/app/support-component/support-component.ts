@@ -14,9 +14,25 @@ export class SupportComponent {
 
   supportTicketList: SupportTicketInfo[] = [];
 
+  filteredSupportTicketList: SupportTicketInfo[] = [];
+
+
   supportService: SupportService = inject(SupportService); 
 
   constructor() {
     this.supportTicketList = this.supportService.getAllSupportTickets();
+
+    this.filteredSupportTicketList = this.supportTicketList;
   }
+
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredSupportTicketList = this.supportTicketList;
+      return;
+    }
+    this.filteredSupportTicketList = this.supportTicketList.filter((supportTicket) =>
+      supportTicket?.ticketId.toLowerCase().includes(text.toLowerCase()),
+    );
+  }
+
 }

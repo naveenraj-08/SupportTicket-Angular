@@ -1,0 +1,41 @@
+.results {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.results input[type='text'] {
+  padding: 10px 14px;
+  width: 260px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-right: 10px;
+  outline: none;
+}
+
+.results input[type='text']:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+button.primary {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button.primary:hover {
+  background: var(--primary-color-dark);
+}
+
+app-support-ticket {
+  display: block;
+  margin-top: 16px;
+}

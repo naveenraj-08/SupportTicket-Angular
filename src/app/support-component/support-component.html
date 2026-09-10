@@ -1,9 +1,11 @@
-<p>support-component works!</p>
-
 <section class="results">
-      @for (supportTicket of supportTicketList; track $index) {
+    <input type="text" placeholder="Filter by TicketId" #filter />
+    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+
+      @for (supportTicket of filteredSupportTicketList; track $index) {
         <app-support-ticket [supportTicket]="supportTicket" />
       }
+      
 </section>
 
   

@@ -45,4 +45,12 @@ export class SupportService {
     getSupportTicketById(ticketId: String): SupportTicketInfo | undefined {
         return this.supportTicketList.find((supportTicket) => supportTicket.ticketId === ticketId);
     }
+
+    submitApplication(firstName: string, lastName: string, email: string) {
+    console.log(
+      `Support application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`,
+    );
+  }
+
+  
 }

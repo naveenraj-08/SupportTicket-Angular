@@ -16,11 +16,12 @@ import {SupportComponent} from './support-component/support-component'
 
   template: `
     <main>
-      <a [routerLink]="['/']">
-        <header class="brand-name">
-          <img class="brand-logo" src="/public/logo.svg" alt="logo" aria-hidden="true" />
-        </header>
-      </a>
+      <header class="site-header">
+        <a class="brand-name" [routerLink]="['/']">
+          <img class="brand-logo" src="/assets/consultant.png" alt="support" />
+          <span class="brand-title">{{ title() }}</span>
+        </a>
+      </header>
       <section class="content">
         <router-outlet />
       </section>

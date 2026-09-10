@@ -1,8 +1,9 @@
-<p>support-ticket works!</p>
-
 <section class="listing">
     <a [routerLink]="['/ticketDetails', supportTicket().ticketId]">Learn More</a>
-    <h2 class="listing-ticketId">{{ supportTicket().ticketId }}</h2>
+    <h2 class="listing-ticketId">
+        <img class="ticket-logo" src="/assets/online-service.png" alt="" />
+        {{ supportTicket().ticketId }}
+    </h2>
     <p class="listing-details">{{ supportTicket().traceId }} | {{ supportTicket().customerId }} | {{ supportTicket().customerName }} 
         | {{ supportTicket().subject }} | {{ supportTicket().description }} | {{ supportTicket().channel }} | {{ supportTicket().createdAt }}</p>
 </section>

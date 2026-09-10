@@ -1,1 +1,31 @@
-<p>support-details works!</p>
+<article>
+      <a class="back-link" [routerLink]="['/']">&larr; Back to Tickets</a>
+      <section class="listing-description">
+        <h2 class="listing-ticketId">
+            <img class="ticket-logo" src="/assets/online-service.png" alt="" />
+            {{ supportTicketInfo?.ticketId }}
+        </h2>
+        <p class="listing-location">{{ supportTicketInfo?.subject }} - {{ supportTicketInfo?.description }}</p>
+      </section>
+      <section class="listing-features">
+        <h2 class="section-heading">About this ticket</h2>
+        <ul>
+          <li>Customer : {{ supportTicketInfo?.customerId }} - {{supportTicketInfo?.customerName}}</li>
+          <li>Created At : {{ supportTicketInfo?.createdAt }}</li>
+          <li>Medium : {{ supportTicketInfo?.channel }}</li>
+        </ul>
+      </section>
+
+      <section class="listing-apply">
+        <h2 class="section-heading">Submit FeebBack Here</h2>
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
+          <label for="first-name">First Name</label>
+          <input id="first-name" type="text" formControlName="firstName" />
+          <label for="last-name">Last Name</label>
+          <input id="last-name" type="text" formControlName="lastName" />
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" />
+          <button type="submit" class="primary">Submit now</button>
+        </form>
+      </section>
+</article>
