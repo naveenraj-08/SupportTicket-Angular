@@ -1,4 +1,4 @@
-import { Component, inject,input} from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, RouterLink} from'@angular/router';
 import { SupportTicketInfo } from '../support-ticket';
@@ -20,20 +20,30 @@ export class SupportDetails {
 
   supportTicketInfo : SupportTicketInfo | undefined;
 
-   ticketId = '';
+  // ticketId = '';
 
    applyForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
   });
+  changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  //  constructor() {
+  //     this.ticketId = String(this.route.snapshot.params['ticketId']);
+
+  //     this.supportTicketInfo = this.supportService.getSupportTicketById(this.ticketId);
+
+  //  }
 
    constructor() {
-      this.ticketId = String(this.route.snapshot.params['ticketId']);
-
-      this.supportTicketInfo = this.supportService.getSupportTicketById(this.ticketId);
-
-   }
+    const ticketId = String(this.route.snapshot.params['ticketId']);
+    console.log('ticketId :: ',ticketId);
+    this.supportService.getSupportTicketById(ticketId).then((supportTicketInfo) => {
+      this.supportTicketInfo = supportTicketInfo;
+      this.changeDetectorRef.markForCheck();
+    });
+  }
 
    submitApplication() {
     this.supportService.submitApplication(

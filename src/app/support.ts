@@ -4,7 +4,21 @@ import { SupportTicketInfo } from './support-ticket';
 @Service()
 export class SupportService {
 
-    supportTicketList: SupportTicketInfo[] = [
+    url : string = 'http://localhost:3000/tickets';
+
+    async getAllSupportTickets(): Promise<SupportTicketInfo[]> {
+        const data = await fetch(this.url);
+        return (await data.json()) ?? [];
+    }
+
+    async getSupportTicketById(ticketId: String): Promise<SupportTicketInfo | undefined> {
+
+        const data = await fetch(`${this.url}?ticketId=${ticketId}`);
+        const matches: SupportTicketInfo[] = await data.json();
+        return matches?.[0];
+    }
+
+   /* supportTicketList: SupportTicketInfo[] = [
         {
           ticketId: 'S1001',
           traceId: 'Sup-123456787',
@@ -38,6 +52,7 @@ export class SupportService {
       ];
 
 
+
     getAllSupportTickets(): SupportTicketInfo[] {
         return this.supportTicketList;
     }
@@ -45,7 +60,7 @@ export class SupportService {
     getSupportTicketById(ticketId: String): SupportTicketInfo | undefined {
         return this.supportTicketList.find((supportTicket) => supportTicket.ticketId === ticketId);
     }
-
+*/
     submitApplication(firstName: string, lastName: string, email: string) {
     console.log(
       `Support application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`,

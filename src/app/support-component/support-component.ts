@@ -1,4 +1,4 @@
-import { Component, inject} from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { SupportTicketInfo } from '../support-ticket';
 import { SupportTicket } from '../support-ticket/support-ticket';
 import { SupportService } from '../support';
@@ -18,11 +18,23 @@ export class SupportComponent {
 
 
   supportService: SupportService = inject(SupportService); 
+  changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  constructor() {
-    this.supportTicketList = this.supportService.getAllSupportTickets();
+  // constructor() {
+  //   this.supportTicketList = this.supportService.getAllSupportTickets();
 
-    this.filteredSupportTicketList = this.supportTicketList;
+  //   this.filteredSupportTicketList = this.supportTicketList;
+  // }
+
+
+constructor() {
+    this.supportService
+      .getAllSupportTickets()
+      .then((supportTicketList: SupportTicketInfo[]) => {
+        this.supportTicketList = supportTicketList;
+        this.filteredSupportTicketList = supportTicketList;
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   filterResults(text: string) {
